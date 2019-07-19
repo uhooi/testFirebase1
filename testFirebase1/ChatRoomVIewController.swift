@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ChatRoomViewController.swift
 //  testFirebase1
 //
 //  Created by がーたろ on 2019/07/09.
@@ -12,12 +12,11 @@ import FirebaseDatabase
 
 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
-
+    @IBOutlet var sendButton: UIButton!
     @IBOutlet var messageTextField: UITextField!
-    
     @IBOutlet var tableView: UITableView!
     
     var databaseRef:DatabaseReference!
@@ -25,22 +24,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.sendButton.layer.cornerRadius = 25
+        self.messageTextField.layer.cornerRadius = 5
+        self.title = "TUB"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            
+        // 文字の色
+            .foregroundColor: UIColor.white,
+        
+            NSAttributedString.Key.font: UIFont(name: "Futura", size: 30)!
+        ]
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "退出", style: .plain, target: self, action: #selector(exit(_:)))
+        sendButton.addTarget(self, action: #selector(self.sendData), for: .touchUpInside)
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = true
         tableView.indicatorStyle = UIScrollView.IndicatorStyle.black
-//        tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
-
+        tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
+        tableView.transform = __CGAffineTransformMake(1, 0, 0, -1, 0, 0)
         databaseRef = Database.database().reference()
-//        readFbData()
         
         databaseRef.observe(.childAdded, with: { snapshot in
             if let obj = snapshot.value as? [String : AnyObject], let name = obj["name"] as? String, let message = obj["message"] {
                 self.messages.insert(obj, at: 0)
                 self.tableView.reloadData()
-                
-//                let currentText = self.textView.text
-//                self.textView.text = (currentText ?? "") + "\n\(name) : \(message)"
             }
         })
         
@@ -48,20 +58,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     }
     
-//    func readFbData() {
-//
-//        databaseRef.observe(.childAdded, with: { snapshot in
-//            if let obj = snapshot.value as? [String : AnyObject], let name = obj["name"] as? String, let message = obj["message"] {
-//                let currentText = self.textView.text
-//                self.textView.text = (currentText ?? "") + "\n\(name) : \(message)"
-//            }
-//        })
-//    }
-//
-    func sendData() {
-//        if let name = nameTextField.text, let message = messageTextField.text {
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.separatorStyle = .none
+    }
+    
+
+    @objc func sendData() {
         if let message = messageTextField.text {
-            let messageData = ["name": "ばなな", "message": message]
+            let messageData = ["name": UserDefaults.standard.string(forKey: "name"), "message": message]
             databaseRef.childByAutoId().setValue(messageData)
             
             messageTextField.text = ""
@@ -79,47 +83,54 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     
     
-    @IBAction func sendBtn(_ sender: Any) {
-        sendData()
-    }
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell (
-            withIdentifier: "cell",
-            for: indexPath as IndexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as? TableViewCell
         let dictionary = messages[indexPath.row] as! [String: AnyObject]
+        cell?.messageLabel?.text = dictionary["message"] as? String
+        cell?.nameLabel?.text = dictionary["name"] as? String
+        if cell?.nameLabel?.text == UserDefaults.standard.string(forKey: "name") {
+            cell?.messageLabel.backgroundColor = UIColor(hex: "D7003E")
+            cell?.messageLabel.textColor = UIColor(hex: "FFFFFF")
+        }
+        cell!.transform = __CGAffineTransformMake(1, 0, 0, -1, 0, 0)
         
-        cell.textLabel?.text = dictionary["message"] as? String
         
-        
-        
-        
-        return cell
+        return cell!
     }
     
-    
-    
-    
-    
-    
-//    func sendData() {
-////        if let name = nameTextField.text, let message = messageTextField.text {
-//        let name: String = "testName"
-//        let message: String = "testMessage"
-//            let messageData = ["name": name, "message": message]
-//
-////        databaseRef = Database.database().reference()
-//        databaseRef.childByAutoId().setValue(messageData)
-//
-////            textView.text = ""
-////        }
-//    }
 
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 76
+    }
+    
+    func showNotAnswerDialog() {
+        let alert: UIAlertController = UIAlertController(title: "退出", message: "現在のルームから退出しますか？", preferredStyle: .alert)
+        
+        // 決定ボタン
+        let defaultAction: UIAlertAction = UIAlertAction(title: "退出", style: .default, handler: { (_: UIAlertAction!) -> Void in
+            self.navigationController?.popViewController(animated: true)
+        })
+        
+        // キャンセルボタン
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (_: UIAlertAction!) -> Void in
+            
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        alert.preferredAction = defaultAction
+        present(alert, animated: true, completion: nil)
+        
+    }
+
+    @objc func exit(_ sender: UIBarButtonItem) {
+        showNotAnswerDialog()
+    }
 
 }
 

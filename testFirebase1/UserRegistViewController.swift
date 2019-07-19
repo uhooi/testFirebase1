@@ -10,21 +10,40 @@ import UIKit
 
 class UserRegistViewController: UIViewController {
 
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var sendButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.nameTextField.layer.cornerRadius = 5
+        self.sendButton.layer.cornerRadius = 25
+        self.title = "TUB"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            
+            // 文字の色
+            .foregroundColor: UIColor.white,
+            
+            NSAttributedString.Key.font: UIFont(name: "Futura", size: 30)!
+        ]
+        self.navigationController?.navigationBar.tintColor = .white
+        sendButton.addTarget(self, action: #selector(self.moveToChat), for: .touchUpInside)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        self.nameTextField.text = ""
     }
-    */
+    
+    
+    
+    
+    @objc func moveToChat() {
+        
+        UserDefaults.standard.removeObject(forKey: "name")
+
+        UserDefaults.standard.set(nameTextField.text, forKey: "name")
+
+        let storyboard: UIStoryboard = UIStoryboard(name: "ChatRoom",bundle: nil)
+        let viewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "ChatRoom")
+        show(viewController, sender: nil)
+    }
 
 }

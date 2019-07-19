@@ -9,10 +9,12 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-
+    @IBOutlet var nameLabel: UITextField!
+    @IBOutlet var messageLabel: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.messageLabel.layer.cornerRadius = 5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
