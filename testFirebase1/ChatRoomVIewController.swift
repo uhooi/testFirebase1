@@ -16,38 +16,31 @@ import RxSwift
 
 class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet var tableView: UITableView!
-    
     var databaseRef:DatabaseReference!
     var messages = [Any]()
-    
-    
     private let disposeBag = DisposeBag()
-    
-
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initView()
+    }
+
+    func initView() {
         self.sendButton.layer.cornerRadius = 25
         self.messageTextField.layer.cornerRadius = 5
         self.title = "TUB"
         self.navigationController?.navigationBar.titleTextAttributes = [
-            
-        // 文字の色
+            // 文字の色
             .foregroundColor: UIColor.white,
-        
             NSAttributedString.Key.font: UIFont(name: "Futura", size: 30)!
         ]
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationItem.hidesBackButton = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "退出", style: .plain, target: self, action: #selector(exit(_:)))
         sendButton.addTarget(self, action: #selector(self.sendData), for: .touchUpInside)
-
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = true
@@ -55,17 +48,15 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
         tableView.transform = __CGAffineTransformMake(1, 0, 0, -1, 0, 0)
         databaseRef = Database.database().reference()
-        
         databaseRef.observe(.childAdded, with: { snapshot in
             if let obj = snapshot.value as? [String : AnyObject], let name = obj["name"] as? String, let message = obj["message"] {
                 self.messages.insert(obj, at: 0)
                 self.tableView.reloadData()
             }
         })
-
+        // バリデーション
         validTxtField(textField: messageTextField)
         
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,12 +64,10 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         sendButton.isEnabled = false
     }
     
-
     @objc func sendData() {
         if let message = messageTextField.text {
             let messageData = ["name": UserDefaults.standard.string(forKey: "name"), "message": message]
             databaseRef.childByAutoId().setValue(messageData)
-            
             messageTextField.text = ""
         }
     }
@@ -120,19 +109,16 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         return 76
     }
     
+    //退出時のアラート
     func showNotAnswerDialog() {
         let alert: UIAlertController = UIAlertController(title: "退出", message: "現在のルームから退出しますか？", preferredStyle: .alert)
-        
         // 決定ボタン
         let defaultAction: UIAlertAction = UIAlertAction(title: "退出", style: .default, handler: { (_: UIAlertAction!) -> Void in
             self.navigationController?.popViewController(animated: true)
         })
-        
         // キャンセルボタン
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (_: UIAlertAction!) -> Void in
-            
         })
-        
         alert.addAction(cancelAction)
         alert.addAction(defaultAction)
         alert.preferredAction = defaultAction
@@ -144,6 +130,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         showNotAnswerDialog()
     }
     
+    // 文字数チェック
     private func changeLoginEnabled() {
         if messageTextField.text!.count > 0{
             // ボタンの活性状態
@@ -153,6 +140,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
     }
+    
     func validTxtField(textField: UITextField) {
         // textの変更を検知する
         textField.rx.text.subscribe(onNext: { _ in
