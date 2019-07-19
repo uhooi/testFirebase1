@@ -29,6 +29,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func initView() {
+        changeLoginEnabled()
         self.sendButton.layer.cornerRadius = 25
         self.messageTextField.layer.cornerRadius = 5
         self.title = "TUB"
@@ -69,6 +70,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             let messageData = ["name": UserDefaults.standard.string(forKey: "name"), "message": message]
             databaseRef.childByAutoId().setValue(messageData)
             messageTextField.text = ""
+            changeLoginEnabled()
         }
     }
     
