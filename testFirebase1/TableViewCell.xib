@@ -33,7 +33,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 2" translatesAutoresizingMaskIntoConstraints="NO" id="jWh-Bn-AQE">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TUB_Blue" translatesAutoresizingMaskIntoConstraints="NO" id="jWh-Bn-AQE">
                         <rect key="frame" x="12" y="19.5" width="48" height="48"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="447-B9-A6c"/>
@@ -55,6 +55,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="iconImg" destination="jWh-Bn-AQE" id="iOS-ev-Ngj"/>
                 <outlet property="messageLabel" destination="S2o-nW-mAp" id="H7m-IH-p2v"/>
                 <outlet property="nameLabel" destination="Frr-0V-Cuo" id="LBe-5A-2xd"/>
             </connections>
@@ -62,6 +63,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Group 2" width="48" height="48"/>
+        <image name="TUB_Blue" width="48" height="48"/>
     </resources>
 </document>

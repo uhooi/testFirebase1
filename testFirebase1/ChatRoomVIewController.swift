@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import RxCocoa
+import RxSwift
 
 
 
@@ -21,6 +23,13 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     
     var databaseRef:DatabaseReference!
     var messages = [Any]()
+    
+    
+    private let disposeBag = DisposeBag()
+    
+
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,13 +62,15 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
                 self.tableView.reloadData()
             }
         })
-        
+
+        validTxtField(textField: messageTextField)
         
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.separatorStyle = .none
+        sendButton.isEnabled = false
     }
     
 
@@ -95,6 +106,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         if cell?.nameLabel?.text == UserDefaults.standard.string(forKey: "name") {
             cell?.messageLabel.backgroundColor = UIColor(hex: "D7003E")
             cell?.messageLabel.textColor = UIColor(hex: "FFFFFF")
+            cell?.iconImg.image = UIImage(named: "TUB_Red")
         }
         cell!.transform = __CGAffineTransformMake(1, 0, 0, -1, 0, 0)
         
@@ -131,6 +143,28 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func exit(_ sender: UIBarButtonItem) {
         showNotAnswerDialog()
     }
+    
+    private func changeLoginEnabled() {
+        if messageTextField.text!.count > 0{
+            // ボタンの活性状態
+            sendButton.isEnabled = true
+        } else {
+            sendButton.isEnabled = false
+        }
+        
+    }
+    func validTxtField(textField: UITextField) {
+        // textの変更を検知する
+        textField.rx.text.subscribe(onNext: { _ in
+            print(textField.text!.count)
+            
+            // チェック関数の呼び出し
+            self.changeLoginEnabled()
+        }).disposed(by: disposeBag)
+    }
+    
+
+
 
 }
 

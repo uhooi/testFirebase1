@@ -12,6 +12,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet var nameLabel: UITextField!
     @IBOutlet var messageLabel: UITextField!
     
+    @IBOutlet var iconImg: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.messageLabel.layer.cornerRadius = 5

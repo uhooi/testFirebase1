@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class UserRegistViewController: UIViewController {
 
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var sendButton: UIButton!
+    private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameTextField.layer.cornerRadius = 5
@@ -26,6 +29,8 @@ class UserRegistViewController: UIViewController {
         ]
         self.navigationController?.navigationBar.tintColor = .white
         sendButton.addTarget(self, action: #selector(self.moveToChat), for: .touchUpInside)
+        validTxtField(textField: nameTextField)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +49,26 @@ class UserRegistViewController: UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "ChatRoom",bundle: nil)
         let viewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "ChatRoom")
         show(viewController, sender: nil)
+    }
+    
+    private func changeLoginEnabled() {
+        if nameTextField.text!.count > 0{
+            // ボタンの活性状態
+            sendButton.isEnabled = true
+        } else {
+            sendButton.isEnabled = false
+        }
+        
+    }
+
+    func validTxtField(textField: UITextField) {
+        // textの変更を検知する
+        textField.rx.text.subscribe(onNext: { _ in
+            print(textField.text!.count)
+            
+            // チェック関数の呼び出し
+            self.changeLoginEnabled()
+        }).disposed(by: disposeBag)
     }
 
 }

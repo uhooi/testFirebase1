@@ -7,7 +7,9 @@ target 'testFirebase1' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'IQKeyboardManagerSwift'
-
+  pod 'RxSwift'
+  pod 'RxSwift', '~> 4.4.0'
+  pod 'RxCocoa', '~> 4.4.0'
 
   #Pods for testFirebase1
 
