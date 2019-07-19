@@ -135,8 +135,12 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         if messageTextField.text!.count > 0{
             // ボタンの活性状態
             sendButton.isEnabled = true
+            sendButton.backgroundColor = UIColor(hex: "D7003E")
+            sendButton.setTitleColor(UIColor.white, for: .normal)
         } else {
             sendButton.isEnabled = false
+            sendButton.backgroundColor = UIColor(hex: "801a2e")
+            sendButton.setTitleColor(UIColor.gray, for: .normal)
         }
         
     }
