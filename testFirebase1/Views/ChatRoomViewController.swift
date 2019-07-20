@@ -16,7 +16,7 @@ final class ChatRoomViewController: UIViewController, UITableViewDelegate, UITab
 
     // MARK: Properties
     
-    private var databaseRef: DatabaseReference!
+    private let databaseRef = Database.database().reference()
     private let disposeBag = DisposeBag()
     private var messages: [Any] = []
     
@@ -24,7 +24,7 @@ final class ChatRoomViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet private var sendButton: UIButton!
     @IBOutlet private var messageTextField: UITextField!
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var chatTableView: UITableView!
     
     // MARK: View Lifecycle
     
@@ -34,7 +34,7 @@ final class ChatRoomViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.separatorStyle = .none
+        chatTableView.separatorStyle = .none
         sendButton.isEnabled = false
     }
     
@@ -56,16 +56,15 @@ final class ChatRoomViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
-        let dictionary = messages[indexPath.row] as! [String: AnyObject]
-        cell.messageLabel?.text = dictionary["message"] as? String
-        cell.nameLabel?.text = dictionary["name"] as? String
-        if cell.nameLabel?.text == UserDefaults.standard.string(forKey: "name") {
-            cell.messageLabel.backgroundColor = UIColor(hex: "D7003E")
-            cell.messageLabel.textColor = UIColor(hex: "FFFFFF")
-            cell.iconImg.image = UIImage(named: "TUB_Red")
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell") as! ChatTableViewCell
         cell.transform = __CGAffineTransformMake(1, 0, 0, -1, 0, 0)
+        guard let chat = messages[indexPath.row] as? [String: Any] else {
+            return cell
+        }
+        let name = chat["name"] as? String
+        let message = chat["message"] as? String
+        let isMyself = (name == UserDefaults.standard.string(forKey: "name"))
+        cell.setup(name: name, message: message, isMyself: isMyself)
         return cell
     }
     
@@ -99,17 +98,16 @@ final class ChatRoomViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func configureTableView() {
-        tableView.indicatorStyle = UIScrollView.IndicatorStyle.black
-        tableView.transform = __CGAffineTransformMake(1, 0, 0, -1, 0, 0) // テーブルビューを反転する
-        tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
+        chatTableView.indicatorStyle = UIScrollView.IndicatorStyle.black
+        chatTableView.transform = __CGAffineTransformMake(1, 0, 0, -1, 0, 0) // テーブルビューを反転する
+        chatTableView.register(UINib(nibName: "ChatTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatTableViewCell")
     }
     
     private func readChatData() {
-        databaseRef = Database.database().reference()
         databaseRef.observe(.childAdded) { snapshot in
             if let obj = snapshot.value as? [String: AnyObject], obj["name"] as? String != nil, obj["message"] as? String != nil {
                 self.messages.insert(obj, at: 0)
-                self.tableView.reloadData()
+                self.chatTableView.reloadData()
             }
         }
     }

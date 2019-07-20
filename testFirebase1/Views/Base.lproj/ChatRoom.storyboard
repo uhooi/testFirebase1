@@ -27,6 +27,9 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="hVu-jn-RVE"/>
+                                </connections>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BA5-0n-XCG">
                                 <rect key="frame" x="0.0" y="48" width="375" height="546"/>
@@ -91,9 +94,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="chatTableView" destination="BA5-0n-XCG" id="iHE-o8-v2C"/>
                         <outlet property="messageTextField" destination="0ci-We-KEU" id="Tgs-KR-cPS"/>
                         <outlet property="sendButton" destination="wmV-zK-ekQ" id="NpW-Dx-YXC"/>
-                        <outlet property="tableView" destination="BA5-0n-XCG" id="iHE-o8-v2C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -12,7 +12,7 @@
         <!--TUB-->
         <scene sceneID="jFZ-yX-5KA">
             <objects>
-                <viewController title="TUB" id="gd2-mM-Ehm" customClass="UserRegistViewController" customModule="testFirebase1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="TUB" id="gd2-mM-Ehm" customClass="UserRegisterViewController" customModule="testFirebase1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xo9-3d-EAh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

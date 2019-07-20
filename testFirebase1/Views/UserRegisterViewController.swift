@@ -1,5 +1,5 @@
 //
-//  UserRegistViewController.swift
+//  UserRegisterViewController.swift
 //  testFirebase1
 //
 //  Created by がーたろ on 2019/07/16.
@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class UserRegistViewController: UIViewController {
+final class UserRegisterViewController: UIViewController {
 
     // MARK: Properties
     
