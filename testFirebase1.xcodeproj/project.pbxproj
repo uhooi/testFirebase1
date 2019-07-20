@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		0AD18C4422D4BD7100BE59F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD18C4322D4BD7100BE59F5 /* AppDelegate.swift */; };
-		0AD18C4622D4BD7100BE59F5 /* ChatRoomVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD18C4522D4BD7100BE59F5 /* ChatRoomVIewController.swift */; };
+		0AD18C4622D4BD7100BE59F5 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD18C4522D4BD7100BE59F5 /* ChatRoomViewController.swift */; };
 		0AD18C4922D4BD7100BE59F5 /* ChatRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AD18C4722D4BD7100BE59F5 /* ChatRoom.storyboard */; };
 		0AD18C4B22D4BD7200BE59F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD18C4A22D4BD7200BE59F5 /* Assets.xcassets */; };
 		0AD18C4E22D4BD7200BE59F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AD18C4C22D4BD7200BE59F5 /* LaunchScreen.storyboard */; };
 		0AD18C5922D4BD7200BE59F5 /* testFirebase1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD18C5822D4BD7200BE59F5 /* testFirebase1Tests.swift */; };
-		0AD18C6422D4C08000BE59F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0AD18C6322D4C07F00BE59F5 /* GoogleService-Info.plist */; };
 		0AD18C6D22DAD51800BE59F5 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD18C6B22DAD51800BE59F5 /* TableViewCell.swift */; };
 		0AD18C6E22DAD51800BE59F5 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AD18C6C22DAD51800BE59F5 /* TableViewCell.xib */; };
 		0AD18C7022DCCFCA00BE59F5 /* UserRegist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AD18C6F22DCCFCA00BE59F5 /* UserRegist.storyboard */; };
 		0AD18C7222DCD2F400BE59F5 /* UserRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD18C7122DCD2F400BE59F5 /* UserRegistViewController.swift */; };
 		0AD25BC922DF0683001390A4 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD25BC822DF0682001390A4 /* Util.swift */; };
+		2C6F689322E3148D00E85914 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C6F689222E3148C00E85914 /* GoogleService-Info.plist */; };
+		2C6F689522E31CB900E85914 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F689422E31CB900E85914 /* UIView+Border.swift */; };
+		2C6F689722E3291D00E85914 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F689622E3291D00E85914 /* UIViewController+Alert.swift */; };
 		86AD6E6B92E5D35CE1D509AB /* Pods_testFirebase1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E86BBDCB002E50E3E95BE8F /* Pods_testFirebase1.framework */; };
 		DC30A6FA04C58A31097AAA16 /* Pods_testFirebase1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547D93B8FE4331527A89E0F1 /* Pods_testFirebase1Tests.framework */; };
 /* End PBXBuildFile section */
@@ -37,7 +39,7 @@
 		05596474E75C40CBA819D907 /* Pods-testFirebase1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testFirebase1.debug.xcconfig"; path = "Target Support Files/Pods-testFirebase1/Pods-testFirebase1.debug.xcconfig"; sourceTree = "<group>"; };
 		0AD18C4022D4BD7100BE59F5 /* testFirebase1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testFirebase1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD18C4322D4BD7100BE59F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0AD18C4522D4BD7100BE59F5 /* ChatRoomVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomVIewController.swift; sourceTree = "<group>"; };
+		0AD18C4522D4BD7100BE59F5 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		0AD18C4822D4BD7100BE59F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ChatRoom.storyboard; sourceTree = "<group>"; };
 		0AD18C4A22D4BD7200BE59F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AD18C4D22D4BD7200BE59F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -45,13 +47,15 @@
 		0AD18C5422D4BD7200BE59F5 /* testFirebase1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testFirebase1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD18C5822D4BD7200BE59F5 /* testFirebase1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFirebase1Tests.swift; sourceTree = "<group>"; };
 		0AD18C5A22D4BD7200BE59F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0AD18C6322D4C07F00BE59F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0AD18C6B22DAD51800BE59F5 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		0AD18C6C22DAD51800BE59F5 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		0AD18C6F22DCCFCA00BE59F5 /* UserRegist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserRegist.storyboard; sourceTree = "<group>"; };
 		0AD18C7122DCD2F400BE59F5 /* UserRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistViewController.swift; sourceTree = "<group>"; };
 		0AD25BC822DF0682001390A4 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		275C691DA017C852CAD6DD64 /* Pods-testFirebase1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testFirebase1Tests.release.xcconfig"; path = "Target Support Files/Pods-testFirebase1Tests/Pods-testFirebase1Tests.release.xcconfig"; sourceTree = "<group>"; };
+		2C6F689222E3148C00E85914 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "testFirebase1/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2C6F689422E31CB900E85914 /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
+		2C6F689622E3291D00E85914 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		547D93B8FE4331527A89E0F1 /* Pods_testFirebase1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_testFirebase1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		609445FDB75AF793C76A012C /* Pods-testFirebase1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testFirebase1.release.xcconfig"; path = "Target Support Files/Pods-testFirebase1/Pods-testFirebase1.release.xcconfig"; sourceTree = "<group>"; };
 		9E86BBDCB002E50E3E95BE8F /* Pods_testFirebase1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_testFirebase1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,18 +105,20 @@
 		0AD18C4222D4BD7100BE59F5 /* testFirebase1 */ = {
 			isa = PBXGroup;
 			children = (
-				0AD18C6322D4C07F00BE59F5 /* GoogleService-Info.plist */,
-				0AD18C4322D4BD7100BE59F5 /* AppDelegate.swift */,
-				0AD18C4522D4BD7100BE59F5 /* ChatRoomVIewController.swift */,
+				0AD18C7122DCD2F400BE59F5 /* UserRegistViewController.swift */,
+				0AD18C6F22DCCFCA00BE59F5 /* UserRegist.storyboard */,
+				0AD18C4522D4BD7100BE59F5 /* ChatRoomViewController.swift */,
 				0AD18C4722D4BD7100BE59F5 /* ChatRoom.storyboard */,
-				0AD18C4A22D4BD7200BE59F5 /* Assets.xcassets */,
-				0AD18C4C22D4BD7200BE59F5 /* LaunchScreen.storyboard */,
-				0AD18C4F22D4BD7200BE59F5 /* Info.plist */,
 				0AD18C6B22DAD51800BE59F5 /* TableViewCell.swift */,
 				0AD18C6C22DAD51800BE59F5 /* TableViewCell.xib */,
-				0AD18C6F22DCCFCA00BE59F5 /* UserRegist.storyboard */,
-				0AD18C7122DCD2F400BE59F5 /* UserRegistViewController.swift */,
+				0AD18C4C22D4BD7200BE59F5 /* LaunchScreen.storyboard */,
 				0AD25BC822DF0682001390A4 /* Util.swift */,
+				2C6F689422E31CB900E85914 /* UIView+Border.swift */,
+				2C6F689622E3291D00E85914 /* UIViewController+Alert.swift */,
+				0AD18C4322D4BD7100BE59F5 /* AppDelegate.swift */,
+				0AD18C4F22D4BD7200BE59F5 /* Info.plist */,
+				0AD18C4A22D4BD7200BE59F5 /* Assets.xcassets */,
+				2C6F689222E3148C00E85914 /* GoogleService-Info.plist */,
 			);
 			path = testFirebase1;
 			sourceTree = "<group>";
@@ -232,10 +238,10 @@
 			files = (
 				0AD18C4E22D4BD7200BE59F5 /* LaunchScreen.storyboard in Resources */,
 				0AD18C6E22DAD51800BE59F5 /* TableViewCell.xib in Resources */,
-				0AD18C6422D4C08000BE59F5 /* GoogleService-Info.plist in Resources */,
 				0AD18C7022DCCFCA00BE59F5 /* UserRegist.storyboard in Resources */,
 				0AD18C4B22D4BD7200BE59F5 /* Assets.xcassets in Resources */,
 				0AD18C4922D4BD7100BE59F5 /* ChatRoom.storyboard in Resources */,
+				2C6F689322E3148D00E85914 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,9 +325,11 @@
 			files = (
 				0AD18C6D22DAD51800BE59F5 /* TableViewCell.swift in Sources */,
 				0AD18C7222DCD2F400BE59F5 /* UserRegistViewController.swift in Sources */,
+				2C6F689522E31CB900E85914 /* UIView+Border.swift in Sources */,
 				0AD25BC922DF0683001390A4 /* Util.swift in Sources */,
-				0AD18C4622D4BD7100BE59F5 /* ChatRoomVIewController.swift in Sources */,
+				0AD18C4622D4BD7100BE59F5 /* ChatRoomViewController.swift in Sources */,
 				0AD18C4422D4BD7100BE59F5 /* AppDelegate.swift in Sources */,
+				2C6F689722E3291D00E85914 /* UIViewController+Alert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,7 +493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H2XW5KQ42M;
+				DEVELOPMENT_TEAM = 47E56DYP3N;
 				INFOPLIST_FILE = testFirebase1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -505,7 +513,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H2XW5KQ42M;
+				DEVELOPMENT_TEAM = 47E56DYP3N;
 				INFOPLIST_FILE = testFirebase1/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
